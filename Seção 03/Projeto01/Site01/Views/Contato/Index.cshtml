@@ -28,7 +28,7 @@
         <label for="mensagem">Mensagem</label>
         <textarea name="mensagem" class="form-control" id="mensagem">@Model.Mensagem</textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" onclick="return validate()" class="btn btn-primary">Enviar</button>
 </form>
 <div class="alert alert-danger" role="alert">@ViewBag.Erro</div>
 @ViewBag.Mensagem

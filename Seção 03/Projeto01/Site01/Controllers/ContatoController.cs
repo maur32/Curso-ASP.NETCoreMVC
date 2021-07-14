@@ -21,7 +21,10 @@ namespace Site01.Controllers
         [HttpPost]
         public IActionResult ReceberContato([FromForm] Contato contato)
         {
-            Regex rgx = new Regex(@"/^[^\s@]+@[^\s@]+$/");
+            String theEmailPattern = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+                                   + "@"
+                                   + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z";
+
             if (string.IsNullOrEmpty(contato.Nome))
             {
                 ViewBag.Erro = "O campo 'Nome' é obrigatório!";
@@ -46,7 +49,7 @@ namespace Site01.Controllers
 
                 return View("Index", contato);
             }
-            else if (!rgx.IsMatch(contato.Email))
+            else if (!Regex.IsMatch(contato.Email, theEmailPattern))
             {
                 ViewBag.Erro = "O campo 'E-mail' é inválido!";
 
