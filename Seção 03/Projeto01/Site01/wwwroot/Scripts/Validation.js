@@ -1,53 +1,46 @@
-﻿const form = document.querySelector("form")
-const nome = document.querySelector("input[name='nome']")
-const email = document.querySelector("input[name='email']")
-const assunto = document.querySelector("input[name='assunto']")
-const mensagem = document.querySelector("textarea")
-const alertMessage = document.querySelector(".alert")
-
-alertMessage.style.display = "none"
-
-form.onsubmit = function (e) {
-    if (nome.value.trim() === "") {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Nome' é obrigatório!"
-    } else if (nome.value.length > 50) {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Nome' deve conter no máximo 50 caracteres!"
-    } else if (email.value.trim() === "") {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Email' é obrigatório!"
-    } else if (email.value.length > 70) {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Nome' deve conter no máximo 70 caracteres!"
-    }
-    else if (!isEmail(email.value)) {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'E-mail' é inválido!"
-    } else if (assunto.value.trim() === "") {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Assunto' é obrigatório!"
-    } else if (assunto.value.length > 70) {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Assunto' deve conter no máximo 70 caracteres!"
-    } else if (mensagem.value.trim() === "") {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Mensagem' é obrigatório!"
-    } else if (mensagem.value.length > 2000) {
-        e.preventDefault()
-        alertMessage.style.display = "block"
-        alertMessage.innerText = "O campo 'Mensagem' deve conter no máximo 2000 caracteres!"
-    }
-}
+﻿const alertMessage = $(".alert").addClass("d-none")
+const form = $("form")
 
 function isEmail(email) {
-    return /^[^\s@]+@[^\s@]+$/.test(email)
+    return /^[^\s@('@')]+@('@')[^\s@('@')]+$/.test(email)
 }
+
+form.submit(function (e) {
+    if ($("#nome").val().trim() === "") {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'Nome' é obrigatório!")
+    } else if ($("#nome").val().length > 50) {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'Nome' deve conter no máximo 50 caracteres!")
+    } else if ($("#email").val().trim() === "") {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'E-mail' é obrigatório!")
+    } else if ($("#email").val().length > 70) {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'E-mail' deve conter no máximo 70 caracteres!")
+    } else if (!isEmail($("#email").val())) {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'E-mail' é inválido!")
+    } else if ($("#assunto").val().trim() === "") {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'Assunto' é obrigatório!")
+    } else if ($("#assunto").val().length > 50) {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'Assunto' deve conter no máximo 70 caracteres!")
+    } else if ($("#mensagem").val().trim() === "") {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'Mensagem' é obrigatório!")
+    } else if ($("#mensagem").val().length > 50) {
+        e.preventDefault()
+        alertMessage.removeClass("d-none")
+        alertMessage.html("O campo 'Assunto' deve conter no máximo 2000 caracteres!")
+    }
+})
