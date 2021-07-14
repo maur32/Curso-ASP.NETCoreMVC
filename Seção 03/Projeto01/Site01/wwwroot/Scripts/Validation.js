@@ -1,10 +1,6 @@
 ﻿const alertMessage = $(".alert").addClass("d-none")
 const form = $("form")
 
-function isEmail(email) {
-    return /^[^\s@('@')]+@('@')[^\s@('@')]+$/.test(email)
-}
-
 form.submit(function (e) {
     if ($("#nome").val().trim() === "") {
         e.preventDefault()
@@ -44,3 +40,8 @@ form.submit(function (e) {
         alertMessage.html("O campo 'Assunto' deve conter no máximo 2000 caracteres!")
     }
 })
+
+
+function isEmail(email) {
+    return /^[^\s@]+@[^\s@]+$/.test(email)
+}

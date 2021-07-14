@@ -21,6 +21,7 @@ namespace Site01.Controllers
         [HttpPost]
         public IActionResult ReceberContato([FromForm] Contato contato)
         {
+            Regex rgx = new Regex(@"/^[^\s@]+@[^\s@]+$/");
             if (string.IsNullOrEmpty(contato.Nome))
             {
                 ViewBag.Erro = "O campo 'Nome' é obrigatório!";
@@ -42,6 +43,12 @@ namespace Site01.Controllers
             else if (contato.Email.Length > 70)
             {
                 ViewBag.Erro = "O campo 'E-mail' deve conter no máximo 70 caracteres!";
+
+                return View("Index", contato);
+            }
+            else if (!rgx.IsMatch(contato.Email))
+            {
+                ViewBag.Erro = "O campo 'E-mail' é inválido!";
 
                 return View("Index", contato);
             }
