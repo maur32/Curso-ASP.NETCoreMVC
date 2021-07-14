@@ -14,7 +14,7 @@ namespace Site01.Controllers
         public IActionResult Index()
         {
             ViewBag.Contato = new Contato();
-            return View();
+            return View(new Contato());
         }
 
 
@@ -24,66 +24,57 @@ namespace Site01.Controllers
             if (string.IsNullOrEmpty(contato.Nome))
             {
                 ViewBag.Erro = "O campo 'Nome' é obrigatório!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
             else if (contato.Nome.Length > 50)
             {
                 ViewBag.Erro = "O campo 'Nome' deve conter no máximo 50 caracteres!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
             else if (string.IsNullOrEmpty(contato.Email))
             {
                 ViewBag.Erro = "O campo 'E-mail' é obrigatório!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
             else if (contato.Email.Length > 70)
             {
                 ViewBag.Erro = "O campo 'E-mail' deve conter no máximo 70 caracteres!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
             else if (string.IsNullOrEmpty(contato.Assunto))
             {
                 ViewBag.Erro = "O campo 'Assunto' é obrigatório!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
             else if (contato.Assunto.Length > 70)
             {
                 ViewBag.Erro = "O campo 'Assunto' deve conter no máximo 70 caracteres!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
             else if (string.IsNullOrEmpty(contato.Mensagem))
             {
                 ViewBag.Erro = "O campo 'Mensagem' é obrigatório!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
             else if (contato.Mensagem.Length > 2000)
             {
                 ViewBag.Erro = "O campo 'Mensagem' deve conter no máximo 2000 caracteres!";
-                ViewBag.Contato = contato;
 
-                return View("Index");
+                return View("Index", contato);
             }
 
             else
             {
-                ViewBag.Contato = new Contato();
                 EnviarEmail.EnviarMensagemContato(contato);
                 ViewBag.Mensagem = "Mensagem enviada com sucesso!";
-                return View("Index");
+                return View("Index", new Contato());
             }
 
 
