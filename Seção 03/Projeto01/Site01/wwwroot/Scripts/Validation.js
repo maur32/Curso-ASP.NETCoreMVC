@@ -39,11 +39,21 @@ function validate() {
         alertMessage.html("O campo 'Assunto' deve conter no máximo 2000 caracteres!")
         return false
     } else {
-        return true
+        fetch(form.get(0).action, {
+            method: 'POST',
+            body: new FormData(form.get(0)),
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+            }
+        })
+            .then(response => response.text())
+            .then(data => $("body").html(data))
     }
 }
 
+form.submit(e => e.preventDefault())
 
 function isEmail(email) {
     return /^[^\s@]+@[^\s@]+$/.test(email)
 }
+
