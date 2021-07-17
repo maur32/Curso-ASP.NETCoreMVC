@@ -24,5 +24,9 @@ namespace Site01.Models
         //[Required(ErrorMessage = "O campo 'Mensagem' é obrigatório!")]
         //[MaxLength(2000, ErrorMessage = "O campo 'Mensagem' deve conter o máximo de 2000 caracteres!")]
         public string Mensagem { get; set; }
+
+        public List<UF> Ufs { get; set; }
+
+        public List<Cidades> cidades { get; set; }
     }
 }

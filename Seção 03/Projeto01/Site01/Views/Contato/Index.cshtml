@@ -28,6 +28,26 @@
         <label for="mensagem">Mensagem</label>
         <textarea name="mensagem" class="form-control" id="mensagem">@Model.Mensagem</textarea>
     </div>
+    <div class="form-group">
+        <label for="UF">UF</label>
+        <select class="form-control" aria-label="Default select example">
+            <option disabled selected class="d-none"> Selecione uma UF </option>
+            @foreach (var ufs in Model.Ufs)
+            {
+                <option>@ufs.uf</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="UF">Cidade</label>
+        <select class="form-control" aria-label="Default select example">
+            <option disabled selected class="d-none"> Selecione uma cidade </option>
+            @foreach (var cidade in Model.cidades)
+            {
+                <option>@cidade.cidade</option>
+            }
+        </select>
+    </div>
     <button type="submit" onclick="return validate()" class="btn btn-primary">Enviar</button>
 </form>
 <div class="alert alert-danger" role="alert">@ViewBag.Erro</div>

@@ -13,8 +13,44 @@ namespace Site01.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.Contato = new Contato();
-            return View(new Contato());
+            Contato contato = new Contato();
+            List<UF> ufs = new List<UF>();
+            ufs.Add(new UF() { uf = "SP" });
+            ufs.Add(new UF() { uf = "RO" });
+            ufs.Add(new UF() { uf = "AC" });
+            ufs.Add(new UF() { uf = "AM" });
+            ufs.Add(new UF() { uf = "RR" });
+            ufs.Add(new UF() { uf = "PA" });
+            ufs.Add(new UF() { uf = "AP" });
+            ufs.Add(new UF() { uf = "TO" });
+            ufs.Add(new UF() { uf = "MA" });
+            ufs.Add(new UF() { uf = "PI" });
+            ufs.Add(new UF() { uf = "CE" });
+            ufs.Add(new UF() { uf = "RN" });
+            ufs.Add(new UF() { uf = "PB" });
+            ufs.Add(new UF() { uf = "PE" });
+            ufs.Add(new UF() { uf = "AL" });
+            ufs.Add(new UF() { uf = "SE" });
+            ufs.Add(new UF() { uf = "BA" });
+            ufs.Add(new UF() { uf = "MG" });
+            ufs.Add(new UF() { uf = "ES" });
+            ufs.Add(new UF() { uf = "RJ" });
+            ufs.Add(new UF() { uf = "PR" });
+            ufs.Add(new UF() { uf = "SC" });
+            ufs.Add(new UF() { uf = "MS" });
+            ufs.Add(new UF() { uf = "MT" });
+            ufs.Add(new UF() { uf = "GO" });
+            ufs.Add(new UF() { uf = "DF" });
+
+            List<Cidades> cidades = new List<Cidades>();
+            cidades.Add(new Cidades() { cidade = "São Paulo", uf = new UF() { uf = "SP" } });
+            cidades.Add(new Cidades() { cidade = "Blumenau", uf = new UF() { uf = "SC" } });
+            cidades.Add(new Cidades() { cidade = "Balneário Camboriú", uf = new UF() { uf = "SC" } });
+            cidades.Add(new Cidades() { cidade = "Itupeva", uf = new UF() { uf = "SP" } });
+            cidades.Add(new Cidades() { cidade = "Manaus", uf = new UF() { uf = "AM" } });
+            contato.Ufs = ufs;
+            contato.cidades = cidades;
+            return View(contato);
         }
 
 
